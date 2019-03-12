@@ -11,7 +11,7 @@ const {size} = fs.statSync('./easier.csv');
 let start = parseInt(process.argv[2]);
 let end = start + gig;
 
-console.log(size);
+
 if(!start){
     start = 0;
 }
@@ -107,7 +107,7 @@ async function run(){
                 encoding: 'UTF8',
                 start, //where in the file to start at, passed from process creator
                 end, //start + 1 gig or to end of file
-                highWaterMark: 8
+                highWaterMark: 8 //upper limit of buffer
             }),
             myTransform,
             //needs to be a stream based function. like a http write stream
