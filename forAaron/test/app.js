@@ -2,7 +2,7 @@ const fs = require('fs');
 const {spawn} = require('child_process');
 
 const gig = 1024**3;
-const {size} = fs.statSync('../easier.csv');
+const {size} = fs.statSync('./easier.csv');
 const goal = Math.floor(size / gig) + 1;
 
 console.log(size);
@@ -54,4 +54,4 @@ const child_spawn = {
 }
 
 
-// child_spawn.generate();
+child_spawn.generate();

@@ -4,10 +4,10 @@ const {pipeline, Transform} = require("stream")
 // const {Readable} = require("stream");
 const {promisify} = require('bluebird');
 
-const filename  = path.resolve(__dirname, '../easier.csv'); //Your filename here
+const filename  = path.resolve(__dirname, './easier.csv'); //Your filename here
 const gig = 1024**3;
 const chunk_size = 1024**2;
-const {size} = fs.statSync('../easier.csv');
+const {size} = fs.statSync('./easier.csv');
 let start = parseInt(process.argv[2]);
 let end = start + gig;
 
@@ -106,7 +106,8 @@ async function run(){
             fs.createReadStream(filename, {
                 encoding: 'UTF8',
                 start, //where in the file to start at, passed from process creator
-                end //start + 1 gig or to end of file
+                end, //start + 1 gig or to end of file
+                highWaterMark: 8
             }),
             myTransform,
             //needs to be a stream based function. like a http write stream
@@ -121,12 +122,6 @@ async function run(){
     }
 }
 
-function yourMutateFunction(data){
 
-}
-
-function yourSendFunction(data){
-    console.log(data);
-}
 
 run()
